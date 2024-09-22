@@ -10,7 +10,7 @@ function mainMenu {
     while($mainMenu -ne ''){
         Clear-Host
         Write-Host "`n`t`t $introString`n"
-        Start-Sleep -Seconds 3
+        Start-Sleep -Seconds 1
         Write-Host "`n`t`t ================ $Title ================`n"
         Write-Host -ForegroundColor Cyan "Main Menu"
         Write-Host -ForegroundColor DarkCyan -NoNewline "`n["; Write-Host -NoNewline "1"; Write-Host -ForegroundColor DarkCyan -NoNewline "]"; `
@@ -22,9 +22,9 @@ function mainMenu {
         if($mainMenu -eq 1){
             macMenu
         }
-        # Launch submenu2
+        # Launch ipmenu
         if($mainMenu -eq 2){
-            subMenu2
+            ipMenu
         }
     }
 }
@@ -60,9 +60,9 @@ function macMenu {
     }
 }
 
-function subMenu2 {
-    $subMenu2 = 'X'
-    while($subMenu2 -ne ''){
+function ipMenu {
+    $ipMenu = 'X'
+    while($ipMenu -ne ''){
         Clear-Host
         Write-Host "`n`t`t ================ $Title ================`n"
         Write-Host -ForegroundColor Cyan "IP Menu"
@@ -70,10 +70,10 @@ function subMenu2 {
             Write-Host -ForegroundColor DarkCyan " Show processes"
         Write-Host -ForegroundColor DarkCyan -NoNewline "`n["; Write-Host -NoNewline "2"; Write-Host -ForegroundColor DarkCyan -NoNewline "]"; `
             Write-Host -ForegroundColor DarkCyan " Show PS Version"
-        $subMenu2 = Read-Host "`nSelection (leave blank to quit)"
+        $ipMenu = Read-Host "`nSelection (leave blank to quit)"
         $timeStamp = Get-Date -Uformat %m%d%y%H%M
         # Option 1
-        if($subMenu2 -eq 1){
+        if($ipMenu -eq 1){
             Get-Process
             # Pause and wait for input before going back to the menu
             Write-Host -ForegroundColor DarkCyan "`nScript execution complete."
@@ -81,7 +81,7 @@ function subMenu2 {
             [void][System.Console]::ReadKey($true)
         }
         # Option 2
-        if($subMenu2 -eq 2){
+        if($ipMenu -eq 2){
             $PSVersionTable.PSVersion
             # Pause and wait for input before going back to the menu
             Write-Host -ForegroundColor DarkCyan "`nScript execution complete."
