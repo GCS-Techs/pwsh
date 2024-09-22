@@ -4,6 +4,7 @@ function mainMenu {
     $mainMenu = 'X'
     $Title = 'NetTools Script'
     $introString = ' 
+        NetTools Script 0.10 
         Script will ONLY run if run as admin and on a DHCP server or domain joined host with RSAT tools installed  
         '
     while($mainMenu -ne ''){
