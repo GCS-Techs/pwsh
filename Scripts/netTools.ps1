@@ -4,8 +4,8 @@ function mainMenu {
     $mainMenu = 'X'
     $Title = 'NetTools Script'
     $introString = ' 
-        NetTools Script 0.10 
-        Script will ONLY run if run as admin and on a DHCP server or domain joined host with RSAT tools installed  
+        NetTools Script 0.12 
+        Script has many functions and some will only work if run as admin and on a DHCP server or domain joined host with RSAT tools installed  
         '
     while($mainMenu -ne ''){
         Clear-Host
@@ -38,12 +38,12 @@ function macMenu {
         Write-Host -ForegroundColor DarkCyan -NoNewline "`n["; Write-Host -NoNewline "1"; Write-Host -ForegroundColor DarkCyan -NoNewline "]"; `
             Write-Host -ForegroundColor DarkCyan " Show Device MAC Addresses"
         Write-Host -ForegroundColor DarkCyan -NoNewline "`n["; Write-Host -NoNewline "2"; Write-Host -ForegroundColor DarkCyan -NoNewline "]"; `
-            Write-Host -ForegroundColor DarkCyan " Say goodbye"
+            Write-Host -ForegroundColor DarkCyan " Search DHCP leases for a client MAC address"
         $macMenu = Read-Host "`nSelection (leave blank to quit)"
         $timeStamp = Get-Date -Uformat %m%d%y%H%M
         # Option 1
         if($macMenu -eq 1){
-            Write-Host 'Get-NetAdapter | Select-Object Name, MacAddress'
+            Get-NetAdapter | Select-Object Name, MacAddress
             # Pause and wait for input before going back to the menu
             Write-Host -ForegroundColor DarkCyan "`nScript execution complete."
             Write-Host "`nPress any key to return to the previous menu"
@@ -51,7 +51,8 @@ function macMenu {
         }
         # Option 2
         if($macMenu -eq 2){
-            Write-Host 'Goodbye!'
+            $mac = Read-Host 'what is the clients MAC address? (XX-XX-XX-XX-XX)'
+            Get-DhcpServerv4Scope | Get-DhcpServerv4Lease -EA SilentlyContinue -ClientId $mac
             # Pause and wait for input before going back to the menu
             Write-Host -ForegroundColor DarkCyan "`nScript execution complete."
             Write-Host "`nPress any key to return to the previous menu"
@@ -74,7 +75,7 @@ function ipMenu {
         $timeStamp = Get-Date -Uformat %m%d%y%H%M
         # Option 1
         if($ipMenu -eq 1){
-            Get-Process
+            Get-NetIPAddress | Select-Object InterfaceAlias, IPAddress, PrefixLength,PrefixOrigin
             # Pause and wait for input before going back to the menu
             Write-Host -ForegroundColor DarkCyan "`nScript execution complete."
             Write-Host "`nPress any key to return to the previous menu"
