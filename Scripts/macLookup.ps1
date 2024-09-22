@@ -4,7 +4,6 @@ function mainMenu {
     $mainMenu = 'X'
     $Title = 'NetTools Script'
     $introString = ' 
-        NetTools Script 0.01 
         Script will ONLY run if run as admin and on a DHCP server or domain joined host with RSAT tools installed  
         '
     while($mainMenu -ne ''){
@@ -14,13 +13,13 @@ function mainMenu {
         Write-Host "`n`t`t ================ $Title ================`n"
         Write-Host -ForegroundColor Cyan "Main Menu"
         Write-Host -ForegroundColor DarkCyan -NoNewline "`n["; Write-Host -NoNewline "1"; Write-Host -ForegroundColor DarkCyan -NoNewline "]"; `
-            Write-Host -ForegroundColor DarkCyan " Submenu1"
+            Write-Host -ForegroundColor DarkCyan " MAC Menu"
         Write-Host -ForegroundColor DarkCyan -NoNewline "`n["; Write-Host -NoNewline "2"; Write-Host -ForegroundColor DarkCyan -NoNewline "]"; `
-            Write-Host -ForegroundColor DarkCyan " Submenu2"
+            Write-Host -ForegroundColor DarkCyan " IP Menu"
         $mainMenu = Read-Host "`nSelection (leave blank to quit)"
-        # Launch submenu1
+        # Launch macmenu
         if($mainMenu -eq 1){
-            subMenu1
+            macMenu
         }
         # Launch submenu2
         if($mainMenu -eq 2){
@@ -29,28 +28,28 @@ function mainMenu {
     }
 }
 
-function subMenu1 {
-    $subMenu1 = 'X'
-    while($subMenu1 -ne ''){
+function macMenu {
+    $macMenu = 'X'
+    while($macMenu -ne ''){
         Clear-Host
         Write-Host "`n`t`t ================ $Title ================`n"
-        Write-Host -ForegroundColor Cyan "Sub Menu 1"
+        Write-Host -ForegroundColor Cyan "MAC Menu"
         Write-Host -ForegroundColor DarkCyan -NoNewline "`n["; Write-Host -NoNewline "1"; Write-Host -ForegroundColor DarkCyan -NoNewline "]"; `
-            Write-Host -ForegroundColor DarkCyan " Say hello"
+            Write-Host -ForegroundColor DarkCyan " Show Device MAC Addresses"
         Write-Host -ForegroundColor DarkCyan -NoNewline "`n["; Write-Host -NoNewline "2"; Write-Host -ForegroundColor DarkCyan -NoNewline "]"; `
             Write-Host -ForegroundColor DarkCyan " Say goodbye"
-        $subMenu1 = Read-Host "`nSelection (leave blank to quit)"
+        $macMenu = Read-Host "`nSelection (leave blank to quit)"
         $timeStamp = Get-Date -Uformat %m%d%y%H%M
         # Option 1
-        if($subMenu1 -eq 1){
-            Write-Host 'Hello!'
+        if($macMenu -eq 1){
+            Write-Host 'Get-NetAdapter | Select-Object Name, MacAddress'
             # Pause and wait for input before going back to the menu
             Write-Host -ForegroundColor DarkCyan "`nScript execution complete."
             Write-Host "`nPress any key to return to the previous menu"
             [void][System.Console]::ReadKey($true)
         }
         # Option 2
-        if($subMenu1 -eq 2){
+        if($macMenu -eq 2){
             Write-Host 'Goodbye!'
             # Pause and wait for input before going back to the menu
             Write-Host -ForegroundColor DarkCyan "`nScript execution complete."
@@ -65,7 +64,7 @@ function subMenu2 {
     while($subMenu2 -ne ''){
         Clear-Host
         Write-Host "`n`t`t ================ $Title ================`n"
-        Write-Host -ForegroundColor Cyan "Sub Menu 2"
+        Write-Host -ForegroundColor Cyan "IP Menu"
         Write-Host -ForegroundColor DarkCyan -NoNewline "`n["; Write-Host -NoNewline "1"; Write-Host -ForegroundColor DarkCyan -NoNewline "]"; `
             Write-Host -ForegroundColor DarkCyan " Show processes"
         Write-Host -ForegroundColor DarkCyan -NoNewline "`n["; Write-Host -NoNewline "2"; Write-Host -ForegroundColor DarkCyan -NoNewline "]"; `
