@@ -5,7 +5,7 @@ function mainMenu {
     $Title = 'NetTools Script'
     $introString = ' 
         NetTools Script 0.12 
-        Script has many functions and some will only work if run as admin and on a DHCP server or domain joined host with RSAT tools installed  
+        This script has many functions and some will only work if run as admin and on a DHCP server or domain joined host with RSAT tools installed  
         '
     while($mainMenu -ne ''){
         Clear-Host
