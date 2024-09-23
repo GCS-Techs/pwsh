@@ -68,14 +68,14 @@ function ipMenu {
         Write-Host "`n`t`t ================ $Title ================`n"
         Write-Host -ForegroundColor Cyan "IP Menu"
         Write-Host -ForegroundColor DarkCyan -NoNewline "`n["; Write-Host -NoNewline "1"; Write-Host -ForegroundColor DarkCyan -NoNewline "]"; `
-            Write-Host -ForegroundColor DarkCyan " Show processes"
+            Write-Host -ForegroundColor DarkCyan " Show device IP adresses"
         Write-Host -ForegroundColor DarkCyan -NoNewline "`n["; Write-Host -NoNewline "2"; Write-Host -ForegroundColor DarkCyan -NoNewline "]"; `
             Write-Host -ForegroundColor DarkCyan " Show PS Version"
         $ipMenu = Read-Host "`nSelection (leave blank to quit)"
         $timeStamp = Get-Date -Uformat %m%d%y%H%M
         # Option 1
         if($ipMenu -eq 1){
-            Get-NetIPAddress | Select-Object InterfaceAlias, IPAddress, PrefixLength,PrefixOrigin
+            Get-NetIPAddress | Select-Object InterfaceAlias, IPAddress, PrefixLength, PrefixOrigin
             # Pause and wait for input before going back to the menu
             Write-Host -ForegroundColor DarkCyan "`nScript execution complete."
             Write-Host "`nPress any key to return to the previous menu"
