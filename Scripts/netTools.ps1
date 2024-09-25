@@ -1,4 +1,4 @@
-# Get-DhcpServerv4Scope | Get-DhcpServerv4Lease -EA SilentlyContinue -ClientId 00-0c-29-dc-a5-3b"
+"Created By Nathan Mercier, 2024"
 
 function mainMenu {
     $mainMenu = 'X'
